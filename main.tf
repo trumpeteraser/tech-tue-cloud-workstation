@@ -129,6 +129,10 @@ resource "aws_security_group_rule" "allow_all" {
 resource "aws_instance" "workstation1" {
   ami                    = data.aws_ami.ubuntu.id
   instance_type          = "t3.large"
+  metadata_options {
+    http_tokens		 = "required"
+    http_endpoint	 = "enabled"
+  }
   key_name               = var.ssh_key
   vpc_security_group_ids = [aws_security_group.work-sg.id]
   subnet_id              = aws_subnet.work-subnet.id
