@@ -30,14 +30,14 @@ DEBIAN_FRONTEND=noninteractive /usr/bin/apt upgrade -y >> /tmp/first-boot.log 2>
 /usr/bin/apt-get install -y python >> /tmp/first-boot.log 2>&1
 /usr/bin/apt-get install -y python3-pip >> /tmp/first-boot.log 2>&1
 /bin/echo "***** Create New User *****" >> /tmp/first-boot.log
-/usr/sbin/useradd -m student >> /tmp/first-boot.log 2>&1
-/usr/sbin/usermod -aG sudo student
-/usr/bin/mkdir /home/student/Desktop >> /tmp/first-boot.log 2>&1
-/usr/bin/chown student:student /home/student/Desktop >> /tmp/first-boot.log 2>&1
-/usr/bin/ls -als /home/student/Desktop >> /tmp/first-boot.log 2>&1
-/bin/echo 'student:ChangeMe' | /usr/sbin/chpasswd
+/usr/sbin/useradd -m user >> /tmp/first-boot.log 2>&1
+/usr/sbin/usermod -aG sudo user
+/usr/bin/mkdir /home/user/Desktop >> /tmp/first-boot.log 2>&1
+/usr/bin/chown user:user /home/user/Desktop >> /tmp/first-boot.log 2>&1
+/usr/bin/ls -als /home/user/Desktop >> /tmp/first-boot.log 2>&1
+/bin/echo 'user:ChangeMe' | /usr/sbin/chpasswd
 /bin/echo "***** Create Firefox Launcher *****" >> /tmp/first-boot.log
-/usr/bin/cat << EOF > /home/student/Desktop/Firefox.desktop
+/usr/bin/cat << EOF > /home/user/Desktop/Firefox.desktop
 #!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -49,11 +49,11 @@ Name[C]=Firefox
 Exec=firefox
 Name=Firefox
 EOF
-/usr/bin/cat /home/student/Desktop/Firefox.desktop >> /tmp/first-boot.log
-/usr/bin/chown student:student /home/student/Desktop/Firefox.desktop >> /tmp/first-boot.log 2>&1
-/usr/bin/chmod 775 /home/student/Desktop/Firefox.desktop >> /tmp/first-boot.log 2>&1
+/usr/bin/cat /home/user/Desktop/Firefox.desktop >> /tmp/first-boot.log
+/usr/bin/chown user:user /home/user/Desktop/Firefox.desktop >> /tmp/first-boot.log 2>&1
+/usr/bin/chmod 775 /home/user/Desktop/Firefox.desktop >> /tmp/first-boot.log 2>&1
 /bin/echo "***** Create Firefox Launcher *****" >> /tmp/first-boot.log
-/usr/bin/cat << EOF > /home/student/Desktop/Chrome.desktop
+/usr/bin/cat << EOF > /home/user/Desktop/Chrome.desktop
 #!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -65,11 +65,11 @@ Name[C]=Chrome
 Exec=google-chrome
 Name=Chrome
 EOF
-/usr/bin/cat /home/student/Desktop/Chrome.desktop >> /tmp/first-boot.log
-/usr/bin/chown student:student /home/student/Desktop/Chrome.desktop >> /tmp/first-boot.log 2>&1
-/usr/bin/chmod 775 /home/student/Desktop/Chrome.desktop >> /tmp/first-boot.log 2>&1
+/usr/bin/cat /home/user/Desktop/Chrome.desktop >> /tmp/first-boot.log
+/usr/bin/chown user:user /home/user/Desktop/Chrome.desktop >> /tmp/first-boot.log 2>&1
+/usr/bin/chmod 775 /home/user/Desktop/Chrome.desktop >> /tmp/first-boot.log 2>&1
 /bin/echo "***** Create Terminal Launcher *****" >> /tmp/first-boot.log
-/usr/bin/cat << EOF > /home/student/Desktop/Terminal.desktop
+/usr/bin/cat << EOF > /home/user/Desktop/Terminal.desktop
 #!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -81,9 +81,9 @@ Name[C]=Terminal
 Exec=bash
 Name=Terminal
 EOF
-/usr/bin/cat /home/student/Desktop/Terminal.desktop >> /tmp/first-boot.log
-/usr/bin/chown student:student /home/student/Desktop/Terminal.desktop >> /tmp/first-boot.log 2>&1
-/usr/bin/chmod 775 /home/student/Desktop/Terminal.desktop >> /tmp/first-boot.log 2>&1
+/usr/bin/cat /home/user/Desktop/Terminal.desktop >> /tmp/first-boot.log
+/usr/bin/chown user:user /home/user/Desktop/Terminal.desktop >> /tmp/first-boot.log 2>&1
+/usr/bin/chmod 775 /home/user/Desktop/Terminal.desktop >> /tmp/first-boot.log 2>&1
 /bin/echo "*****DONE*****" >> /tmp/first-boot.log
 /bin/echo "Script Stop  Time: "$(/usr/bin/date) >> /tmp/first-boot.log
 /usr/bin/wall "NOTICE: First Boot Setup Has Completed"
