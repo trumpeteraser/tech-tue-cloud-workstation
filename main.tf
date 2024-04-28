@@ -89,3 +89,35 @@ resource "aws_route_table_association" "work-rta" {
   subnet_id      = aws_subnet.work-subnet.id
   route_table_id = aws_route_table.work-rtble.id
 }
+
+resource "aws_security_group" "work-sg" {
+  name   = "work-sg"
+  vpc_id = aws_vpc.work-vpc.id
+}
+
+resource "aws_security_group_rule" "sg-ssh" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  cidr_blocks       = ["${chomp(data.http.myip.body)}/32"]
+  security_group_id = aws_security_group.work-sg.id
+}
+
+resource "aws_security_group_rule" "sg-rdp" {
+  type              = "ingress"
+  from_port         = 3389
+  to_port           = 3389
+  protocol          = "tcp"
+  cidr_blocks       = ["${chomp(data.http.myip.body)}/32"]
+  security_group_id = aws_security_group.work-sg.id
+}
+
+resource "aws_security_group_rule" "allow_all" {
+  type              = "egress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.work-sg.id
+}
