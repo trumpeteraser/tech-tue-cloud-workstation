@@ -38,12 +38,7 @@ data "aws_ami" "ubuntu" {
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
+    values = ["ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"]
   }
 
   owners = ["099720109477"]
@@ -120,14 +115,14 @@ resource "aws_security_group_rule" "sg-rdp" {
   security_group_id = aws_security_group.work-sg.id
 }
 
-resource "aws_security_group_rule" "sg-rdp2" {
-  type              = "ingress"
-  from_port         = 3389
-  to_port           = 3389
-  protocol          = "tcp"
-  cidr_blocks       = [var.alt_rdp_source_ip]
-  security_group_id = aws_security_group.work-sg.id
-}
+#resource "aws_security_group_rule" "sg-rdp2" {
+#  type              = "ingress"
+#  from_port         = 3389
+#  to_port           = 3389
+#  protocol          = "tcp"
+#  cidr_blocks       = [var.alt_rdp_source_ip]
+#  security_group_id = aws_security_group.work-sg.id
+#}
 
 resource "aws_security_group_rule" "allow_all" {
   type              = "egress"
